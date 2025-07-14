@@ -1,4 +1,4 @@
-# urlly - Cloud-native URL shortener
+# ZipLink : Scalable and Distributive URL shortener
 
 ## Getting Started 
 
