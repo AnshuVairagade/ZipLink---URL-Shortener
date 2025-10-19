@@ -1,0 +1,32 @@
+name: Deploy URL Shortener
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to docker hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Build Docker Image
+        run: docker buildx build . -t anshuvairagade/url-shortener-backend --load
+      - name: Publish Image to docker hub
+        run: docker push anshuvairagade/url-shortener-backend:latest
+
+      
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull anshuvairagade/url-shortener-backend:latest
+      - name: Delete old container
+        run: docker rm -f nodejs-app-container
+      - name: Run Docker Container
+        run: docker run -d -p 4000:4000 --name nodejs-app-container -e MONGO_PASSWORD='${{ secrets.MONGO_PASSWORD }}' anshuvairagade/url-shortener-backend
