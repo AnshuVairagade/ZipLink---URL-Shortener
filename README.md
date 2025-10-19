@@ -2,6 +2,12 @@
 
 A Node.js URL Shortener application with server-side rendered views using Express.js and EJS, connected to MongoDB Atlas for data storage. This project demonstrates automated deployment on AWS EC2 using GitHub Actions for Continuous Integration and Continuous Deployment (CI/CD).
 
+> **Apologies for the earlier confusion 🙏**  
+> I mistakenly shared the wrong repository link.  
+> Please refer to the correct project implementation here:  
+> 👉 [URL Shortener with AWS Deployment using CI/CD](https://github.com/AnshuVairagade/URL_Shortener_with_AWS_Deployment_using_CICD)
+
+
 # Archeitecture Daigram
 <img width="1000" height="591" alt="Url Shortener Project drawio" src="https://github.com/user-attachments/assets/0625646e-3a37-4103-a19e-48cce3959758" />
 
